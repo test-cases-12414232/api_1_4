@@ -1,0 +1,23 @@
+import requests
+
+params = {
+    "loc_1": "/london",
+    "loc_2": "/svo",
+    "loc_3": "/Череповец",
+    "version": "?nTq",
+    "measure_1": "u",
+    "measure_2": "m",
+    "lang_1": "en",
+    "lang_2": "ru"
+}
+
+url_1 = f"http://wttr.in{params['loc_1']}{params['version']}{params['measure_1']}&lang={params['lang_1']}"
+url_2 = f"http://wttr.in{params['loc_2']}{params['version']}{params['measure_1']}&lang={params['lang_1']}"
+url_3 = f"http://wttr.in{params['loc_3']}{params['version']}{params['measure_2']}&lang={params['lang_2']}"
+
+urls = [url_1, url_2, url_3]
+
+for url in urls:
+    response = requests.get(url)
+    response.raise_for_status()
+    print(response.text)
